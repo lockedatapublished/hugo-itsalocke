@@ -9,6 +9,7 @@ homepage = "https://itsalocke.com"
 tags = ["single page","Company","blog"]
 features = []
 min_version = "0.41"
+depends_on = ["hugo-utilitybelt"]
 
 [author]
   name = "Steph Locke"

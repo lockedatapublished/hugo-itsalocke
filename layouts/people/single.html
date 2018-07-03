@@ -1,0 +1,12 @@
+{{ define "main" }}
+
+    <article>
+        <h1>{{ .Title }}</h1>
+        <p>{{ .Params.Photo }} {{ .Params.Id }}</p>
+        {{ .Content }}
+
+
+        {{ partial "presentation.html" . }}
+    </article>
+
+{{ end }}

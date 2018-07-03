@@ -1,0 +1,15 @@
+<h2>Presentations</h2>
+{{ $match := .Params.id }}
+{{ range $.Site.Data.presentations }}
+{{ if in $match (slice .talk_id .person_id) }}
+<li>{{ .talk_id }} {{ .person_id }} </li> 
+<li>{{ with $.Site.GetPage "page" ( printf "people/%s.md" .person_id ) }}
+    {{ .Title }}
+    {{ end }}</li>
+<li>{{ with $.Site.GetPage "page" ( printf "talks/%s.md" .talk_id ) }}
+    {{ .Title }}
+    {{ end }}</li>
+
+{{ end }}
+{{ end }}
+
