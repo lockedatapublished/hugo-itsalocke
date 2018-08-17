@@ -1,0 +1,32 @@
+<h2>Calendar</h2>
+
+<h3> Future events </h3>
+<ul>
+{{ range  $.Site.Data.presentations }}
+{{ if ge .start  now }}
+<li>{{ .talk_id }} {{ .person_id }} {{ .start }} </li> 
+{{ range $.Site.GetPage "taxonomyTerm" (printf "authors/%s" .person_id) }}
+<li>{{ .Title }}</li>
+{{ end }}
+<li>{{ with $.Site.GetPage "page" ( printf "talk/%s.md" .talk_id ) }}
+    {{ .Title }}
+    {{ end }}</li>
+{{ end }}
+{{ end }}
+</ul>
+
+
+<h3> Past events </h3>
+<ul>
+{{ range $.Site.Data.presentations   }}
+{{ if lt .start  now }}
+<li>{{ .talk_id }} {{ .person_id }} {{ .start }} </li> 
+{{ with $.Site.GetPage "taxonomyTerm" (printf "authors/%s" .person_id) }}
+<li>{{ .Title }}</li>
+{{ end }}
+<li>{{ with $.Site.GetPage "page" ( printf "talks/%s.md" .talk_id ) }}
+    {{ .Title }}
+    {{ end }}</li>
+{{ end }}
+{{ end }}
+</ul>
