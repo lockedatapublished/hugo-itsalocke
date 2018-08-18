@@ -1,0 +1,34 @@
+{{ define "title" }}
+<div class="container">
+    <!-- Optional Header Image -->
+{{ if .Params.photo }}
+<div class="article-header">
+  <img src="{{ .Params.photo | absURL }}" class="article-banner" itemprop="image">
+  {{ with .Title }}<span class="article-header-caption">{{ . | markdownify | emojify }}</span>{{ end }}
+</div>
+{{end}}
+
+  <div class="content-center">
+    <h1 class="title">{{ .Title }}</h1>
+    <div class="text-center">
+      {{with .Params.description }} {{ . | safeHTML }} {{ end }}
+    </div>
+  </div>
+</div>
+{{ end }}
+
+
+{{ define "body" }}
+              
+
+  {{ with .Title }}<h1>{{ . }}</h1>{{ end }}
+{{/* Loops through and displays all child pages */}}
+<h1 class="title">Products</h1>
+<div class="products columns">
+{{ range .Data.Pages }}
+<div class="product column is-one-third">
+  {{ partial "use_snipcart_list-product" . }}
+</div>
+{{ end }}
+</div>
+{{ end }}
