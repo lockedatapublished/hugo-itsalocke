@@ -1,0 +1,19 @@
+<article class="Product">
+  <a href='{{ .Permalink }}' class="Product-link">
+    <header class="Product-header">
+      {{ with .Params.image }}
+      <div class="product__image">
+          {{ partial "use_snipcart_images/list-product" (dict "image" . "baseURL" $.Site.Params.cloudinary_base_url) }}
+      </div>
+      {{ else }}
+      <!-- placeholder image -->
+      {{ end }}
+      <h2>{{ .Title }}</h2>
+      <div class="product__price subtitle is-4">{{ partial "use_snipcart_price" (dict "price" .Params.price "currency" .Site.Params.currency)}}</div>
+    </header>
+    <div class="text-grey-darker text-lg leading-tight">
+        View Details
+        {{ partial "use_snipcart_buy-button" . }}
+    </div>
+  </a>
+</article>

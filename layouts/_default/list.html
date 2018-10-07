@@ -1,0 +1,13 @@
+{{ define "main" }}
+  <div class="py-10 px-4 bg-grey-lightest">
+    <div class="mb-8">
+      <h1 class="mb-4 SiteTitle">{{ .Title }}</h1>
+    </div>
+  </div> 
+  
+  <div class="py-10 Posts">
+    {{ range .Pages }}
+      {{ .Render "summary"}}
+    {{ end }}
+  </div>
+{{ end }}

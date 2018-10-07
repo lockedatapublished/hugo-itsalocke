@@ -1,0 +1,11 @@
+<article class="Talk">
+  <a href='{{ .Permalink }}' class="Talk-link">
+    <header class="Talk-header">
+      <h2 class="text-3xl">{{ .Title }}</h2>
+      <div class="Talk-meta mb-2 text-grey-dark"><time>{{ .Date.Format "Mon, Jan 2, 2006" }}</time></div>
+    </header>
+    <div class="text-grey-darker text-lg leading-tight">
+      {{ .Summary }}
+    </div>
+  </a>
+</article>

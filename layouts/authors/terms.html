@@ -1,25 +1,20 @@
-{{ define "title" }}
-<div class="container">
-    
-      <div class="content-center">
-        <h1 class="title">{{ .Title }}</h1>
-        <div class="text-center">
-          {{with .Params.description }} {{ . | safeHTML }} {{ end }}
-        </div>
-      </div>
-    </div>
-{{end}}
-
-{{ define "body" }}
-<section>
-  <div>
-
-        <ul>
-                {{ range .Data.Pages }}
-                  <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
-                {{ end }}
-                </ul>
+{{ define "main" }}
+<div class="py-10 bg-grey-lightest">
+  <div class="container mb-8">
+    <h1 class="mb-4 SiteTitle">Author</h1>
+    <p>We have a great bunch of writers.</p>
   </div>
-</section>
+</div> 
 
+<div class="container py-10">
+  <div class="AuthorList">
+  {{ range .Data.Pages }}
+    <a href="{{ .Permalink }}" class="AuthorItem">
+      <img src="{{ .Params.photo | absURL }}" alt="{{ .Params.title }}" class="h-64">
+      <h2 class="Author-title">{{ .Params.title }}</h2>
+      <h3 class="Author-bio">{{ .Params.shortbio }}</h3>
+    </a>
+  {{ end }}
+  </div>
+</div>
 {{ end }}

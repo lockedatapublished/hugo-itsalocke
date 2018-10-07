@@ -1,8 +1,7 @@
-<!DOCTYPE html>
-<html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}">
-
- 
-  <body id="page-top" class="index">
-    oops
-  </body>
-</html>
+{{ define "main"}}
+  <main id="main">
+    <div>
+      <h1 id="title"><a href="{{ "/" | relURL }}">Go Home</a></h1>
+    </div>
+  </main>
+{{ end }}

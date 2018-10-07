@@ -1,0 +1,9 @@
+.nav-logo {
+  height: 3rem;
+  max-height: 100%;
+  color: $white;
+
+  &:hover {
+    color: $light;
+  }
+}
