@@ -1,0 +1,27 @@
+.Author-link {
+  transition: all 100ms ease-in-out;
+  border: 2px solid $border-color;
+}
+
+.Author-link:hover {
+  text-decoration: none;
+  border: 2px solid orange;
+}
+
+.Author-title {
+  color: $body-color;
+}
+
+.Author-bio {
+  color: $text-muted;
+}
+
+
+.AuthorItem:hover .AuthorItem-title {
+  color: $orange;
+}
+
+.AuthorItem:hover .AuthorItem-bio {
+  color: theme-color-level(primary, -10);
+}
+

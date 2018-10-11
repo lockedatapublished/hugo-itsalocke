@@ -10,7 +10,7 @@
   <div class="row">
   {{ range .Data.Pages }}
     <div class="col-sm text-center">
-      <a href="{{ .Permalink }}" class="d-block">
+      <a href="{{ .Permalink }}" class="Author-link d-block rounded">
         <img src="{{ .Params.photo | absURL }}" alt="{{ .Params.title }}" class="h-64">
         <h2 class="Author-title">{{ .Params.title }}</h2>
         <h3 class="Author-bio">{{ .Params.shortbio }}</h3>

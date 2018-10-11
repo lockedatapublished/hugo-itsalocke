@@ -32,6 +32,7 @@ body, .wrapper {
 }
 
 .Talk-link {
+  transition: all 100ms ease-in-out;
   border: 2px solid $border-color;
 }
 
