@@ -1,0 +1,40 @@
+ .btn-shake:hover .Shake {
+   animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+   transform: translate3d(0, 0, 0);
+   backface-visibility: hidden;
+   perspective: 1000px;
+ }
+ 
+ @keyframes shake {
+   10%, 90% {
+     transform: translate3d(-1px, 0, 0);
+   }
+   
+   20%, 80% {
+     transform: translate3d(2px, 0, 0);
+   }
+ 
+   30%, 50%, 70% {
+     transform: translate3d(-4px, 0, 0);
+   }
+ 
+   40%, 60% {
+     transform: translate3d(4px, 0, 0);
+   }
+ }
+
+.nav-link--site {
+  transition: all 100ms ease-in;
+}
+
+.nav-link--site .far {
+  transition: all 100ms ease-in;
+  transform: scale(1); 
+}
+
+.nav-link--site:hover .far,
+.navbar-dark .navbar-nav .active> .nav-link--site .far {
+  color: $orange;
+  transition: all 100ms ease-in;
+  transform: scale(1.3);
+}
