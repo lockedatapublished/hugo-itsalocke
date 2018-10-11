@@ -1,3 +1,11 @@
+body {
+  margin-top: 4.5rem;
+}
+
+body, .wrapper {
+  min-height:100vh;
+}
+
 .nav-logo {
   height: 3rem;
   max-height: 100%;
@@ -6,4 +14,28 @@
   &:hover {
     color: $light;
   }
+}
+
+.h-64 {
+  height: 16rem;
+}
+
+.Product-link:hover {
+  text-decoration: none;
+}
+
+
+.navbar .nav-link,
+.navbar .btn {
+  font-family: $headings-font-family;
+  text-transform: uppercase;
+}
+
+.Talk-link {
+  border: 2px solid $border-color;
+}
+
+.Talk-link:hover {
+  text-decoration: none;
+  border: 2px solid orange;
 }

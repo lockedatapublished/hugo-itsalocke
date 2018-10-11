@@ -1,69 +1,62 @@
 {{ define "main" }}
-<div class="AuthorBio">
-  <section id="main" class="AuthorBio-photo">
-    <h1>{{ .Title }}</h1>
-    {{ if .Params.photo }}
-    <div class="article-header">
-      <img src="{{ .Params.photo | absURL }}" class="article-banner" itemprop="image">
-      {{ with .Title }}<span class="article-header-caption">{{ . | markdownify | emojify }}</span>{{ end }}
-    </div>
-    {{end}}
-  </section>
-
-    <aside id="meta" class="AuthorBio-detail bg-grey-lightest p-8">
-        {{ .Content }}
+<div class="container py-5">
+  <div class="row">
+    <section class="col">
+      <h1>{{ .Title }}</h1>
+      {{ if .Params.photo }}
+      <div class="article-header">
+        <img src="{{ .Params.photo | absURL }}" class="article-banner w-100" itemprop="image">
+      </div>
+      {{end}}
+    </section>
+    <aside class="col-7">
+      {{ .Content }}
       <div>
-      {{ with .Params.topics }}
-      <ul id="topics">
-        {{ range . }}
+        {{ with .Params.topics }}
+        <ul>
+          {{ range . }}
           <li><a href="{{ "topics" | absURL}}/{{ . | urlize }}">{{ . }}</a> </li>
+          {{ end }}
+        </ul>
         {{ end }}
-      </ul>
-      {{ end }}
-      {{ with .Params.tags }}
-      <ul id="tags">
-        {{ range . }}
+        {{ with .Params.tags }}
+        <ul>
+          {{ range . }}
           <li> <a href="{{ "tags" | absURL }}/{{ . | urlize }}">{{ . }}</a> </li>
+          {{ end }}
+        </ul>
         {{ end }}
-      </ul>
-      {{ end }}
       </div>
-      <div>
-          {{ with .PrevInSection }}
-            <a class="previous" href="{{.Permalink}}"> {{.Title}}</a>
-          {{ end }}
-          {{ with .NextInSection }}
-            <a class="next" href="{{.Permalink}}"> {{.Title}}</a>
-          {{ end }}
-      </div>
+
       <h2>Presentations</h2>
       <ul>
         {{ $match := .Params.id }}
         {{ range $.Site.Data.presentations }}
-        {{ if eq $match  .person_id  }}
-        <li>{{ .talk_id }} {{ .person_id }} </li> 
+        {{ if eq $match .person_id }}
+        <li>{{ .talk_id }} {{ .person_id }} </li>
         {{ with $.Site.GetPage "taxonomyTerm" (printf "authors/%s" .person_id) }}
         <li>{{ .Title }}</li>
         {{ end }}
         <li>{{ with $.Site.GetPage "page" ( printf "talks/%s.md" .talk_id ) }}
-            {{ .Title }}
-            {{ end }}</li>
-        
+          {{ .Title }}
+          {{ end }}</li>
+
         {{ end }}
         {{ end }}
       </ul>
-      
+
       {{ if ( gt ( len .Data.Pages ) 0 ) }}
       <h2>Articles</h2>
       <ul>
         {{ range .Data.Pages }}
-            <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+        <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
         {{ end }}
       </ul>
       {{ else }}
       {{ end }}
 
-  </aside>
+    </aside>
+  </div>
 </div>
 
 

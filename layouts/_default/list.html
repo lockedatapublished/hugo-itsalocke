@@ -1,13 +1,15 @@
 {{ define "main" }}
-  <div class="py-10 px-4 bg-grey-lightest">
-    <div class="mb-8">
+  <div class="py-10 pt-5 pb-2 bg-grey-lightest mb-5">
+    <div class="">
       <h1 class="mb-4 SiteTitle">{{ .Title }}</h1>
     </div>
   </div> 
   
-  <div class="py-10 Posts">
-    {{ range .Pages }}
-      {{ .Render "summary"}}
-    {{ end }}
+  <div class="py-5 container">
+    <div class="row">
+      {{ range .Pages }}
+        {{ .Render "summary"}}
+      {{ end }}
+    </div>
   </div>
 {{ end }}

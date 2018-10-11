@@ -1,19 +1,21 @@
 {{ define "main" }}
-<div class="py-10 bg-grey-lightest">
-  <div class="container mb-8">
-    <h1 class="mb-4 SiteTitle">Author</h1>
-    <p>We have a great bunch of writers.</p>
+<div class="bg-light">
+    <div class="container pt-5 pb-2 mb-4">
+        <h1 class="mb-4 SiteTitle">{{ .Title }}</h1>
+        {{.Content}}
+    </div> 
   </div>
-</div> 
 
-<div class="container py-10">
-  <div class="AuthorList">
+<div class="container mb-5">
+  <div class="row">
   {{ range .Data.Pages }}
-    <a href="{{ .Permalink }}" class="AuthorItem">
-      <img src="{{ .Params.photo | absURL }}" alt="{{ .Params.title }}" class="h-64">
-      <h2 class="Author-title">{{ .Params.title }}</h2>
-      <h3 class="Author-bio">{{ .Params.shortbio }}</h3>
-    </a>
+    <div class="col-sm text-center">
+      <a href="{{ .Permalink }}" class="d-block">
+        <img src="{{ .Params.photo | absURL }}" alt="{{ .Params.title }}" class="h-64">
+        <h2 class="Author-title">{{ .Params.title }}</h2>
+        <h3 class="Author-bio">{{ .Params.shortbio }}</h3>
+      </a>
+    </div>
   {{ end }}
   </div>
 </div>

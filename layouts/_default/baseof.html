@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        {{ partial "head.html" . }}
-    </head>
-    <body>
+<head>
+    {{ partial "head.html" . }}
+</head>
+<body>
+    <div class="wrapper d-flex flex-column">
         {{ partial "header.html" . }}
-        {{ block "main" . }}{{ end }}
+        <main role="main" class="flex-fill">
+            {{ block "main" . }}{{ end }}
+        </main>
         {{- partial "footer.html" . -}}
-        {{- partial "footer_meta.html" . -}}
-    </body>
+    </div>
+
+    {{- partial "footer_meta.html" . -}}
+</body>
+
 </html>

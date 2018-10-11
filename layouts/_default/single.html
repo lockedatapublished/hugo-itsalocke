@@ -1,10 +1,10 @@
 {{ define "main" }}
-<div class="container">
+<div class="container py-5">
   <section id="main">
     <h1 class="mb-4 SiteTitle">{{ .Title }}</h1>
 
     {{ with .Params.image }}
-    <div class="product__image column is-half">
+    <div class="product__image column is-half mb-4">
             {{ partial "use_snipcart_images/single-product" (dict "image" . "baseURL" $.Site.Params.cloudinary_base_url) }}
     </div>
     {{ end }}
