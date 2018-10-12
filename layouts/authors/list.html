@@ -19,15 +19,15 @@
           {{ end }}
         </ul>
         {{ end }}
-        {{ with .Params.tags }}
-        <ul>
-          {{ range . }}
-          <li> <a href="{{ "tags" | absURL }}/{{ . | urlize }}">{{ . }}</a> </li>
-          {{ end }}
-        </ul>
-        {{ end }}
       </div>
-      <i class="fal fa-presentation"></i>
+      <h2>Interests</h2>
+      {{ with .Params.tags }}
+      <p>
+        {{ range . }}
+        <a class="badge badge-pill badge-warning" href="{{ "tags" | absURL }}/{{ . | urlize }}">{{ . }}</a>
+        {{ end }}
+      </p>
+      {{ end }}
       <h2> Presentations</h2>
       <ul>
         {{ $match := .Params.id }}

@@ -1,10 +1,15 @@
 {{ define "main" }}
     <main aria-role="main">
-      <header class="homepage-header py-5 px-4 mb-5 bg-light">
-        <h1>{{.Title}}</h1>
-        {{ with .Params.subtitle }}
-        <span class="subtitle">{{.}}</span>
-        {{ end }}
+      <header class="emphasis-border row py-5 px-4 mb-5 bg-light align-items-center">
+        <div class="col">
+          {{ partial "data-science.html" .}}           
+        </div>
+        <div class="col-8">
+          <h1>{{.Title}}</h1>
+          {{ with .Params.subtitle }}
+          <span class="subtitle">{{.}}</span>
+          {{ end }}
+        </div>
       </header>
       <div class="homepage-content container mb-5">
         <!-- Note that the content for index.html, as a sort of list page, will pull from content/_index.md -->
