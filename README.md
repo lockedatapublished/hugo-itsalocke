@@ -7,3 +7,6 @@ Note code has been incorporated from the following projects with thanks (and the
 
 - [Atlas](https://github.com/indigotree/atlas)
 - [hugo-agency-theme](https://github.com/digitalcraftsman/hugo-agency-theme)
+
+## Developing
+You will need to run `npm install` for this to work. 
