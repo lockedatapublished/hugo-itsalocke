@@ -1,3 +1,9 @@
+.Authors {
+  display: grid;
+  grid-gap: 1.5rem;
+  grid-template-columns: repeat( auto-fill, minmax(20rem, 1fr) );
+}
+
 .Author-link {
   transition: all 100ms ease-in-out;
   border: 2px solid $border-color;

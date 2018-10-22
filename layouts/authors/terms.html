@@ -7,10 +7,10 @@
   </div>
 
 <div class="container mb-5">
-  <div class="row">
+  <div class="Authors">
   {{ range .Data.Pages }}
-    <div class="col-sm text-center">
-      <a href="{{ .Permalink }}" class="Author-link d-block rounded">
+    <div class="text-center">
+      <a href="{{ .Permalink }}" class="Author-link d-block rounded mb-4">
         <img src="{{ .Params.photo | absURL }}" alt="{{ .Params.title }}" class="h-64">
         <h2 class="Author-title">{{ .Params.title }}</h2>
         <h3 class="Author-bio">{{ .Params.shortbio }}</h3>

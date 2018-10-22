@@ -8,8 +8,11 @@
       <!-- placeholder image -->
       {{ end }}
       <div class="row px-1">
-        <h2 class="text-body col-md-auto m-0">{{ .Title }}</h2>
-        <div class="col align-middle text-right"><span class="text-primary mr-2">{{ partial "use_snipcart_price" (dict "price" .Params.price "currency" .Site.Params.currency)}}</span> 
+        <div class="text-body col-md-auto m-0">
+            <h3 class="m-0">{{ .Title }}</h3>
+            <span class="text-primary mr-2">{{ partial "use_snipcart_price" (dict "price" .Params.price "currency" .Site.Params.currency)}}</span>
+        </div>
+        <div class="col align-middle text-right"> 
             {{ partial "use_snipcart_buy-button" . }}
         </div>
       </div>

@@ -16,15 +16,19 @@
         {{.Content}}
       </div>
 
-      <div class="container">
+      <div class="container mb-5">
         <p>
           Check out <a href="authors/">authors</a>, <a href="talks/">talks</a>, and <a href="products/">products</a>
         </p>
+      </div>
   
-        {{ partial "calendar.html" . }}
+      {{ partial "calendar.html" . }}
     
+      <div class="container mb-5">
         {{ partial "use_hugo-search-index.html" .}}
+      </div>
   
+      <div class="container">
         <div class="row">
           <!-- Note that .Pages is the same as .Site.RegularPages on the homepage template. -->
           {{ range first 10 .Pages }}

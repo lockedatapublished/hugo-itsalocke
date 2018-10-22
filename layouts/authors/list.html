@@ -2,59 +2,68 @@
 <div class="container py-5">
   <div class="row">
     <section class="col">
-      <h1>{{ .Title }}</h1>
+      <h1 class="m-0">{{ .Title }}</h1>
+      <h2 class="m-0"><small class="text-muted">{{ .Params.shortbio }}</small></h2>
       {{ if .Params.photo }}
-      <div class="article-header">
-        <img src="{{ .Params.photo | absURL }}" class="article-banner w-100" itemprop="image">
+      <div class="text-center">
+        <img src="{{ .Params.photo | absURL }}" class="article-banner w-75" itemprop="image">
       </div>
       {{end}}
+      <div class="row no-gutters">
+        <a class="col-md-auto p-2 social-icon" href="https:{{ .Params.linkedin }}"><i class="fab fa-linkedin"></i></a>
+        <a class="col-md-auto p-2 social-icon" href="https://twitter.com/{{ .Params.twitter }}"><i class="fab fa-twitter"></i></a>
+        <a class="col-md-auto p-2 social-icon" href="https://gihub.com/{{ .Params.github }}"><i class="fab fa-github"></i></a>
+      </div>
     </section>
+
     <aside class="col-7">
-      {{ .Content }}
-      <div>
-        {{ with .Params.topics }}
-        <ul>
-          {{ range . }}
-          <li><a href="{{ "topics" | absURL}}/{{ . | urlize }}">{{ . }}</a> </li>
+
+      <div class="mb-4 border-bottom">
+        {{ .Content }}
+      </div>
+
+      <div class="mb-4 border-bottom">
+        <h3 class="watermark-container"><i class="fal fa-presentation mr-2 text-orange watermark"></i> Presentations</h3>
+        <ul class="list-unstyled ml-2">
+          {{ $match := .Params.id }}
+          {{ range $.Site.Data.presentations }}
+          {{ if eq $match .person_id }}
+          <li class="mb-3">{{ .talk_id }} {{ .person_id }} </li>
+          {{ with $.Site.GetPage "taxonomyTerm" (printf "authors/%s" .person_id) }}
+          <li class="mb-3"><a class="d-block" href="{{ .Permalink }}">{{ .Title }}</a>{{ partial "publish-time.html" .}}</li>
+          {{ end }}
+          <li class="mb-3">{{ with $.Site.GetPage "page" ( printf "talks/%s.md" .talk_id ) }}
+              <a class="d-block" href="{{ .Permalink }}">{{ .Title }}</a>{{ partial "publish-time.html" .}}
+            {{ end }}</li>
+
+          {{ end }}
           {{ end }}
         </ul>
-        {{ end }}
       </div>
-      <h2>Interests</h2>
-      {{ with .Params.tags }}
-      <p>
-        {{ range . }}
-        <a class="badge badge-pill badge-warning" href="{{ "tags" | absURL }}/{{ . | urlize }}">{{ . }}</a>
-        {{ end }}
-      </p>
-      {{ end }}
-      <h2> Presentations</h2>
-      <ul>
-        {{ $match := .Params.id }}
-        {{ range $.Site.Data.presentations }}
-        {{ if eq $match .person_id }}
-        <li>{{ .talk_id }} {{ .person_id }} </li>
-        {{ with $.Site.GetPage "taxonomyTerm" (printf "authors/%s" .person_id) }}
-        <li>{{ .Title }}</li>
-        {{ end }}
-        <li>{{ with $.Site.GetPage "page" ( printf "talks/%s.md" .talk_id ) }}
-          {{ .Title }}
-          {{ end }}</li>
-
-        {{ end }}
-        {{ end }}
-      </ul>
 
       {{ if ( gt ( len .Data.Pages ) 0 ) }}
-      <h2>Articles</h2>
-      <ul>
-        {{ range .Data.Pages }}
-        <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
-        {{ end }}
-      </ul>
+      <div class="mb-4 border-bottom">
+        <h3 class="watermark-container"><i class="fal fa-pen-square mr-2 text-orange watermark"></i> Articles</h3>
+        <ul class="list-unstyled ml-2">
+          {{ range first 5 .Data.Pages }}
+          <li class="mb-3"><a class="d-block" href="{{ .Permalink }}">{{ .Title }}</a>{{ partial "publish-time.html" .}}</li>
+          {{ end }}
+          <li><a href="/posts">Back to Section</a></li>
+        </ul>
+      </div>
       {{ else }}
       {{ end }}
 
+      {{ with .Params.tags }}
+      <div>
+        <h3 class="watermark-container"><i class="fal fa-grin-stars mr-2 text-orange watermark"></i> Interests</h3>
+        <p>
+          {{ range . }}
+          <a class="badge badge-pill badge-warning" href="{{ "tags" | absURL }}/{{ . | urlize }}">{{ . }}</a>
+          {{ end }}
+        </p>
+      </div>
+      {{ end }}
     </aside>
   </div>
 </div>
