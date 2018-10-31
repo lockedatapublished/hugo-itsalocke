@@ -8,10 +8,15 @@
 
 <div class="container mb-5">
   <div class="Authors">
+  {{ $placeholder := "img/Placeholder.png" }}
   {{ range .Data.Pages }}
     <div class="text-center">
-      <a href="{{ .Permalink }}" class="Author-link d-block rounded mb-4">
-        <img src="{{ .Params.photo | absURL }}" alt="{{ .Params.title }}" class="h-64">
+      <a href="{{ .Permalink }}" class="Author-link d-block rounded">
+        {{ if .Params.photo }}
+          <img src="{{ .Params.photo | absURL }}" alt="{{ .Params.title }}" class="h-64 p-4">
+        {{ else }}
+          <img src="{{ $placeholder | absURL }}" alt="{{ .Params.title }}" class="h-64 p-4">
+        {{end}}
         <h2 class="Author-title">{{ .Params.title }}</h2>
         <h3 class="Author-bio">{{ .Params.shortbio }}</h3>
       </a>

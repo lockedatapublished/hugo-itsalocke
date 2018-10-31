@@ -5,7 +5,7 @@
       <h1 class="m-0">{{ .Title }}</h1>
       <h2 class="m-0"><small class="text-muted">{{ .Params.shortbio }}</small></h2>
       {{ if .Params.photo }}
-      <div class="text-center">
+      <div class="text-center p-2">
         <img src="{{ .Params.photo | absURL }}" class="article-banner w-75" itemprop="image">
       </div>
       {{end}}
