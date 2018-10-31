@@ -9,3 +9,15 @@
 <script async src="{{$js.RelPermalink}}" integrity="{{ $js.Data.Integrity }}"></script>
 <script async src="{{$appjs.RelPermalink}}" integrity="{{ $appjs.Data.Integrity }}"></script>
 <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.0/dist/bootstrap-toc.min.js"></script>
+
+{{ $sharect := resources.Get "js/vendor/sharect.min.js" | resources.Fingerprint "sha512" }}
+<script src="{{$sharect.RelPermalink}}" integrity="{{ $sharect.Data.Integrity }}"></script>
+<script>
+  var sharect = new Sharect();
+  sharect.config({
+    twitter: true,
+    twitterUsername: '@lockedata',
+    backgroundColor: '#e8830c',
+    iconColor: '#fff'
+  }).init();
+</script>
