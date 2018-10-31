@@ -5,7 +5,7 @@
         <div class="Talk-meta mb-2"><time>{{ .Date.Format "Mon, Jan 2, 2006" }}</time></div>
       </header>
       <div class="text-muted">
-        {{ .Summary }}
+        {{ .Summary | truncate 200 }}
       </div>
     </a>
   </article>

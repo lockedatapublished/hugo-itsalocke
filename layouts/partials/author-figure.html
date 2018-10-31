@@ -1,0 +1,18 @@
+<figure>
+    {{ $placeholder := "img/Placeholder.png" }}
+    {{ if .Params.photo }}
+      <img src="{{ .Params.photo | absURL }}" alt="{{ .Params.title }}" class="h-16">
+    {{ else }}
+      <img src="{{ $placeholder | absURL }}" alt="{{ .Params.title }}" class="h-16">
+    {{end}}
+    <figcaption>
+      <p>
+        {{ .Summary }}
+      </p>
+      <p>
+        <a href="{{ .Permalink }}" class="block-link">
+          More about {{ .Params.name }}
+        </a>
+      </p>
+    </figcaption>
+  </figure>

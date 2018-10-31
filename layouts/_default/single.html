@@ -6,7 +6,9 @@
     </div>
     <div class="col-sm-9">
       <section id="main">
-          <h1 class="mb-4 SiteTitle">{{ .Title }}</h1>
+          <header>
+            <h1 class="mb-4 SiteTitle">{{ .Title }}</h1>
+          </header>
       
           {{ with .Params.image }}
           <div class="product__image column is-half mb-4">
@@ -20,32 +22,33 @@
           </div>
         </section>
         <aside id="meta">
-            <div>
-            <section>
-              <h4 id="date"> {{ .Date.Format "Mon Jan 2, 2006" }} </h4>
-              <h5 id="wordcount"> {{ .WordCount }} Words </h5>
-            </section>
-            {{ with .Params.topics }}
-            <ul id="topics">
-              {{ range . }}
-                <li><a href="{{ "topics" | absURL}}/{{ . | urlize }}">{{ . }}</a> </li>
+            <div class="mb-2 d-flex justify-content-between">
+              <section>
+                <h4 id="date"> {{ .Date.Format "Mon Jan 2, 2006" }} </h4>
+                <h5 id="wordcount"> {{ .WordCount }} Words </h5>
+                <h5> {{ .Params.authors }}</h5>
+              </section>
+              {{ with .Params.topics }}
+              <ul id="topics">
+                {{ range . }}
+                  <li><a href="{{ "topics" | absURL}}/{{ . | urlize }}">{{ . }}</a> </li>
+                {{ end }}
+              </ul>
               {{ end }}
-            </ul>
-            {{ end }}
-            {{ with .Params.tags }}
-            <ul id="tags">
-              {{ range . }}
-                <li> <a href="{{ "tags" | absURL }}/{{ . | urlize }}">{{ . }}</a> </li>
+              {{ with .Params.tags }}
+              <ul id="tags">
+                {{ range . }}
+                  <li> <a href="{{ "tags" | absURL }}/{{ . | urlize }}">{{ . }}</a> </li>
+                {{ end }}
+              </ul>
               {{ end }}
-            </ul>
-            {{ end }}
             </div>
-            <div>
+            <div class="d-flex justify-content-between">
                 {{ with .PrevInSection }}
-                  <a class="previous" href="{{.Permalink}}"> {{.Title}}</a>
+                  <a class="previous" href="{{.Permalink}}"><i class="fal fa-backward"></i> Previous</a>
                 {{ end }}
                 {{ with .NextInSection }}
-                  <a class="next" href="{{.Permalink}}"> {{.Title}}</a>
+                  <a class="next" href="{{.Permalink}}">Next <i class="fal fa-forward"></i></a>
                 {{ end }}
             </div>
         </aside>
