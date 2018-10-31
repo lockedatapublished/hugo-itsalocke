@@ -2,6 +2,9 @@
 {{ $popperjs := resources.Get "js/vendor/popper.min.js" }}
 {{ $bootstrap := resources.Get "js/vendor/bootstrap.min.js" }}
 {{ $app := resources.Get "js/app.js" }}
-{{ $js := slice $jquery $popperjs $bootstrap $app | resources.Concat "js/bundle.js" | resources.Minify | resources.Fingerprint "sha512" }}
+{{ $js := slice $jquery $popperjs $bootstrap | resources.Concat "js/bundle.js" | resources.Minify | resources.Fingerprint "sha512" }}
+{{ $app := resources.Get "js/app.js" }}
+{{ $appjs := slice $app | resources.Concat "js/app-bundle.js" | resources.Minify | resources.Fingerprint "sha512" }}
 
 <script async src="{{$js.RelPermalink}}" integrity="{{ $js.Data.Integrity }}"></script>
+<script async src="{{$appjs.RelPermalink}}" integrity="{{ $appjs.Data.Integrity }}"></script>

@@ -1,90 +1,18 @@
-var setupApp = function () {
-  const container = document.querySelector('.Nav')
-  const primary = container.querySelector('.NavLinks')
-  const primaryItems = container.querySelectorAll('.NavLinks > li:not(.NavMore)')
-  container.classList.add('--jsfied')
+function trimSvgWhitespace() {
 
-  // insert "more" button and duplicate the list
-  primary.insertAdjacentHTML('beforeend', `
-    <li class="NavMore">
-      <button class="NavMore-button" type="button" aria-haspopup="true" aria-expanded="false">
-        More <i class="NavMore-span fas fa-caret-circle-down"></i>
-      </button>
-      <ul class="NavSecondary">
-        ${primary.innerHTML}
-      </ul>
-    </li>
-  `)
-  const secondary = container.querySelector('.NavSecondary')
-  const secondaryItems = secondary.querySelectorAll('li')
-  const allItems = container.querySelectorAll('li')
-  const moreLi = primary.querySelector('.NavMore')
-  const moreBtn = moreLi.querySelector('button')
-  moreBtn.addEventListener('click', (e) => {
-    e.preventDefault()
-    container.classList.toggle('Nav--show-secondary')
-    moreBtn.setAttribute('aria-expanded', container.classList.contains('Nav--show-secondary'))
-  })
+  // get all SVG objects in the DOM
+  var svgs = document.getElementsByTagName("svg");
 
-  // adapt tabs
+  // go through each one and add a viewbox that ensures all children are visible
+  for (var i=0, l=svgs.length; i<l; i++) {
 
-  const doAdapt = () => {
-    // reveal all items for the calculation
-    allItems.forEach((item) => {
-      item.classList.remove('Nav--hidden')
-    })
+    var svg = svgs[i],
+        box = svg.getBBox(), // <- get the visual boundary required to view all children
+        viewBox = [box.x, box.y, box.width, box.height].join(" ");
 
-    // hide items that won't fit in the Primary
-    let stopWidth = moreBtn.offsetWidth
-    let hiddenItems = []
-    const primaryWidth = primary.offsetWidth
-    primaryItems.forEach((item, i) => {
-      if (primaryWidth >= stopWidth + item.offsetWidth) {
-        stopWidth += item.offsetWidth
-      } else {
-        item.classList.add('Nav--hidden')
-        hiddenItems.push(i)
-      }
-    })
-
-    // toggle the visibility of More button and items in Secondary
-    if (!hiddenItems.length) {
-      moreLi.classList.add('Nav--hidden')
-      container.classList.remove('Nav--show-secondary')
-      moreBtn.setAttribute('aria-expanded', false)
-    } else {
-      secondaryItems.forEach((item, i) => {
-        if (!hiddenItems.includes(i)) {
-          item.classList.add('Nav--hidden')
-        }
-      })
-    }
+    // set viewable area based on value above
+    svg.setAttribute("viewBox", viewBox);
   }
-
-  doAdapt() // adapt immediately on load
-  window.addEventListener('resize', doAdapt) // adapt on window resize
-
-  // hide Secondary on the outside click
-
-  document.addEventListener('click', (e) => {
-    let el = e.target
-    while (el) {
-      if (el === secondary || el === moreBtn) {
-        return;
-      }
-      el = el.parentNode
-    }
-    container.classList.remove('Nav--show-secondary')
-    moreBtn.setAttribute('aria-expanded', false)
-  })
 }
 
-
-if (
-  document.readyState === "complete" ||
-  (document.readyState !== "loading" && !document.documentElement.doScroll)
-) {
-  setupApp();
-} else {
-  document.addEventListener("DOMContentLoaded", setupApp);
-}
+trimSvgWhitespace();

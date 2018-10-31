@@ -26,7 +26,8 @@ body, .wrapper {
 
 
 .navbar .nav-link,
-.navbar .btn {
+.navbar .btn,
+.navbar .navbar-toggler {
   font-family: $headings-font-family;
   text-transform: uppercase;
 }
@@ -70,4 +71,11 @@ body, .wrapper {
   transition: all 100ms ease-in;
   transform: scale(1.3);
   color: $orange; 
+}
+
+.navbar-collapse {
+  order: 3;
+  @media (min-width: 768px) {
+    order: initial;
+  }
 }
