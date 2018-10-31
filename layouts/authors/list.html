@@ -10,9 +10,9 @@
       </div>
       {{end}}
       <div class="row no-gutters">
-        <a class="col-md-auto p-2 social-icon" href="https:{{ .Params.linkedin }}"><i class="fab fa-linkedin"></i></a>
-        <a class="col-md-auto p-2 social-icon" href="https://twitter.com/{{ .Params.twitter }}"><i class="fab fa-twitter"></i></a>
-        <a class="col-md-auto p-2 social-icon" href="https://gihub.com/{{ .Params.github }}"><i class="fab fa-github"></i></a>
+        {{ if .Params.linkedin }}<a class="col-md-auto p-2 social-icon" href="https:{{ .Params.linkedin }}"><i class="fab fa-linkedin"></i></a>{{end}}
+        {{ if .Params.twitter }}<a class="col-md-auto p-2 social-icon" href="https://twitter.com/{{ .Params.twitter }}"><i class="fab fa-twitter"></i></a>{{end}}
+        {{ if .Params.github }}<a class="col-md-auto p-2 social-icon" href="https://gihub.com/{{ .Params.github }}"><i class="fab fa-github"></i></a>{{end}}
       </div>
     </section>
 
