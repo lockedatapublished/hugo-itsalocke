@@ -22,12 +22,12 @@
         {{ .Content }}
       </div>
 
+      {{ $match := .Params.id }}
+      {{ range $.Site.Data.presentations }}
+      {{ if eq $match .person_id }}
       <div class="mb-4 border-bottom">
         <h3 class="watermark-container"><i class="fal fa-presentation mr-2 text-orange watermark"></i> Presentations</h3>
         <ul class="list-unstyled ml-2">
-          {{ $match := .Params.id }}
-          {{ range $.Site.Data.presentations }}
-          {{ if eq $match .person_id }}
           <li class="mb-3">{{ .talk_id }} {{ .person_id }} </li>
           {{ with $.Site.GetPage "taxonomyTerm" (printf "authors/%s" .person_id) }}
           <li class="mb-3"><a class="d-block" href="{{ .Permalink }}">{{ .Title }}</a>{{ partial "publish-time.html" .}}</li>
@@ -35,11 +35,10 @@
           <li class="mb-3">{{ with $.Site.GetPage "page" ( printf "talks/%s.md" .talk_id ) }}
               <a class="d-block" href="{{ .Permalink }}">{{ .Title }}</a>{{ partial "publish-time.html" .}}
             {{ end }}</li>
-
-          {{ end }}
-          {{ end }}
         </ul>
       </div>
+      {{ end }}
+      {{ end }}
 
       {{ if ( gt ( len .Data.Pages ) 0 ) }}
       <div class="mb-4 border-bottom">

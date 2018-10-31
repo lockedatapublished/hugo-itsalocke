@@ -1,48 +1,55 @@
 {{ define "main" }}
 <div class="container py-5">
-  <section id="main">
-    <h1 class="mb-4 SiteTitle">{{ .Title }}</h1>
-
-    {{ with .Params.image }}
-    <div class="product__image column is-half mb-4">
-            {{ partial "use_snipcart_images/single-product" (dict "image" . "baseURL" $.Site.Params.cloudinary_base_url) }}
+  <div class="row">
+    <div class="col-sm-3">
+        <nav id="toc" data-toggle="toc" class="sticky-top"></nav>
     </div>
-    {{ end }}
-    <div>
-          <article id="content" class="leading-normal text-lg">
-             {{ .Content }}
-          </article>
+    <div class="col-sm-9">
+      <section id="main">
+          <h1 class="mb-4 SiteTitle">{{ .Title }}</h1>
+      
+          {{ with .Params.image }}
+          <div class="product__image column is-half mb-4">
+                  {{ partial "use_snipcart_images/single-product" (dict "image" . "baseURL" $.Site.Params.cloudinary_base_url) }}
+          </div>
+          {{ end }}
+          <div>
+                <article id="content" class="leading-normal text-lg">
+                    {{ .Content }}
+                </article>
+          </div>
+        </section>
+        <aside id="meta">
+            <div>
+            <section>
+              <h4 id="date"> {{ .Date.Format "Mon Jan 2, 2006" }} </h4>
+              <h5 id="wordcount"> {{ .WordCount }} Words </h5>
+            </section>
+            {{ with .Params.topics }}
+            <ul id="topics">
+              {{ range . }}
+                <li><a href="{{ "topics" | absURL}}/{{ . | urlize }}">{{ . }}</a> </li>
+              {{ end }}
+            </ul>
+            {{ end }}
+            {{ with .Params.tags }}
+            <ul id="tags">
+              {{ range . }}
+                <li> <a href="{{ "tags" | absURL }}/{{ . | urlize }}">{{ . }}</a> </li>
+              {{ end }}
+            </ul>
+            {{ end }}
+            </div>
+            <div>
+                {{ with .PrevInSection }}
+                  <a class="previous" href="{{.Permalink}}"> {{.Title}}</a>
+                {{ end }}
+                {{ with .NextInSection }}
+                  <a class="next" href="{{.Permalink}}"> {{.Title}}</a>
+                {{ end }}
+            </div>
+        </aside>
     </div>
-  </section>
-  <aside id="meta">
-      <div>
-      <section>
-        <h4 id="date"> {{ .Date.Format "Mon Jan 2, 2006" }} </h4>
-        <h5 id="wordcount"> {{ .WordCount }} Words </h5>
-      </section>
-      {{ with .Params.topics }}
-      <ul id="topics">
-        {{ range . }}
-          <li><a href="{{ "topics" | absURL}}/{{ . | urlize }}">{{ . }}</a> </li>
-        {{ end }}
-      </ul>
-      {{ end }}
-      {{ with .Params.tags }}
-      <ul id="tags">
-        {{ range . }}
-          <li> <a href="{{ "tags" | absURL }}/{{ . | urlize }}">{{ . }}</a> </li>
-        {{ end }}
-      </ul>
-      {{ end }}
-      </div>
-      <div>
-          {{ with .PrevInSection }}
-            <a class="previous" href="{{.Permalink}}"> {{.Title}}</a>
-          {{ end }}
-          {{ with .NextInSection }}
-            <a class="next" href="{{.Permalink}}"> {{.Title}}</a>
-          {{ end }}
-      </div>
-  </aside>
+  </div>
 </div>
 {{ end }}
