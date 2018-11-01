@@ -1,17 +1,15 @@
 {{ define "main" }}
 <div class="bg-light">
-    <div class="container pt-5 pb-2 mb-4">
+
+  <div class="container-fluid py-5">
+    <div class="Authors">
+    {{ $placeholder := "img/Placeholder.png" }}
+    <div class="p-4">
         <h1 class="mb-4 SiteTitle">{{ .Title }}</h1>
         {{.Content}}
     </div> 
-  </div>
-
-<div class="container-fluid mb-5">
-  <div class="Authors">
-  {{ $placeholder := "img/Placeholder.png" }}
-  {{ range .Data.Pages }}
-    <div>
-      <a href="{{ .Permalink }}" class="Author-link d-flex align-items-center rounded">
+    {{ range .Data.Pages }}
+      <a href="{{ .Permalink }}" class="Author-link d-flex align-items-center bg-white rounded">
         <div>
           {{ if .Params.photo }}
             <img src="{{ .Params.photo | absURL }}" alt="{{ .Params.title }}" class="h-48 p-4">
@@ -24,8 +22,9 @@
           <h3 class="Author-bio">{{ .Params.shortbio }}</h3>
         </div>
       </a>
+    {{ end }}
     </div>
-  {{ end }}
   </div>
 </div>
+
 {{ end }}
