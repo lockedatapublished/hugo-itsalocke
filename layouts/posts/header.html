@@ -18,7 +18,7 @@
         <i class="far fa-clock"></i>
         <time class="published font-weight-bold"
             datetime='{{ ($.Scratch.Get "dateType").Format "2006-01-02" }}'>
-            {{ ($.Scratch.Get "dateType").Format "January 2, 2006" }}</time>
+            {{ ($.Scratch.Get "dateType").Format "Monday, 2 Jan 2006" }}</time>
       </p>
       {{ if .Site.Params.includeReadingTime }}
           <p class="text-nowrap small font-weight-light text-secondary">{{ .ReadingTime }} minute read</p>

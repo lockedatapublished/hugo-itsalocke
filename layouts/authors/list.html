@@ -47,7 +47,6 @@
           {{ range first 5 .Data.Pages }}
           <li class="mb-3"><a class="d-block" href="{{ .Permalink }}">{{ .Title }}</a>{{ partial "publish-time.html" .}}</li>
           {{ end }}
-          <li><a href="/posts">Back to Section</a></li>
         </ul>
       </div>
       {{ else }}

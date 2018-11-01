@@ -2,7 +2,7 @@
     <a href='{{ .Permalink }}' class="p-3 flex-fill Talk-link d-flex flex-column justify-content-between rounded">
       <header class="Talk-header">
         <h2>{{ .Title }}</h2>
-        <div class="Talk-meta mb-2"><time>{{ .Date.Format "Mon, Jan 2, 2006" }}</time></div>
+        <div class="Talk-meta mb-2"><time datetime='{{ ($.Scratch.Get "dateType").Format "2006-01-02" }}'>{{ .Date.Format "Monday, 2 Jan 2006" }}</time></div>
       </header>
       <div class="text-muted">
         {{ .Summary }}
