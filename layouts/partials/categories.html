@@ -1,11 +1,11 @@
 
 {{ range $key, $value := .Site.Taxonomies }}
 {{ if eq $key "categories" }}
-  <div class="border-bottom">
+  <div class="border-bottom mb-4">
       <h4 class="text-muted"><i class="fas fa-folder mr-1"></i> {{ $key | pluralize }}</h4>
-      <ul class="list-unstyled posts-recent">
+      <ul class="list-unstyled">
           {{ range first 5 $value.ByCount }}
-              <li class="small d-flex justify-content-between align-items-center mb-1"><a href="{{ $.Site.BaseURL}}{{ $key | pluralize }}/{{ .Name | urlize }}">{{ .Name }}</a><span class="text-muted small">{{ .Count }}</span></li>
+              <li class="border-left pl-2 small d-flex justify-content-between align-items-center mb-1"><a href="{{ $.Site.BaseURL}}{{ $key | pluralize }}/{{ .Name | urlize }}">{{ .Name }}</a><span class="text-muted small">{{ .Count }}</span></li>
           {{ end }}
       </ul>
   </div>

@@ -1,0 +1,11 @@
+
+{{ range $key, $value := .Site.Taxonomies }}
+{{ if eq $key "tags" }}
+<div class="border-bottom mb-4 pb-3">
+    <h4 class="text-muted"><i class="fas fa-tags mr-1"></i> {{ $key | pluralize }}</h4>      
+    {{ range first 10 $value.ByCount }}
+        <a class="badge badge-light text-muted" href="{{ $.Site.BaseURL}}{{ $key | pluralize }}/{{ .Name | urlize }}">{{ .Name }}</a>
+    {{ end }}
+</div>
+{{ end }}
+{{ end }}

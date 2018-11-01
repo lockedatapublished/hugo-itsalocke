@@ -7,6 +7,7 @@
         {{.Content}}
       </div>
       {{ partial "categories" . }}
+      {{ partial "tags" . }}
     </div>
     <div class="ml-auto col-md-8">
         {{ $paginator := .Paginate .Data.Pages }}
