@@ -11,11 +11,11 @@
           <p>{{ . }}</p>
       {{ end }}
   </div>
-  <div class="meta text-right">
+  <div class="meta text-right mr-2">
       {{ $.Scratch.Set "dateType" .Date }}
 
       <p class="mb-2 text-nowrap">
-        <i class="far fa-clock mr-1"></i>
+        <i class="far fa-clock"></i>
         <time class="published font-weight-bold"
             datetime='{{ ($.Scratch.Get "dateType").Format "2006-01-02" }}'>
             {{ ($.Scratch.Get "dateType").Format "January 2, 2006" }}</time>
