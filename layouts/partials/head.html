@@ -48,6 +48,7 @@
 {{ $style := resources.Get "sass/main.scss" | toCSS $options | postCSS | minify | fingerprint }}
 <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
 <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.0/dist/bootstrap-toc.min.css">
+<link rel="stylesheet" href="{{ .Site.BaseURL }}css/highlightjs-themes/androidstudio.css" />
 
 {{ range .Site.Params.custom_css -}}
   <link rel="stylesheet" href="{{ . | absURL }}">
