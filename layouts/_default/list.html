@@ -8,9 +8,12 @@
   
   <div class="py-10 container mb-4">
     <div class="row">
-      {{ range .Pages }}
-      {{ .Render "summary"}}
+      {{ $paginator := .Paginate .Data.Pages }}
+      {{ range .Paginator.Pages }}
+          {{ .Render "content-list" }}
       {{ end }}
     </div>
+    {{ partial "pagination" . }}
   </div>
+
 {{ end }}

@@ -1,0 +1,13 @@
+<article class="post mb-5">
+    {{ .Render "header" }}
+  
+    {{ .Render "featured" }}
+    <div id="content" class="mb-4">
+      {{ .Content }}
+    </div>
+  
+    <footer class="mb-4">
+      {{ .Render "footer-category" }}
+    </footer>
+  
+  </article>

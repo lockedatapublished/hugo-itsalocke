@@ -1,0 +1,7 @@
+{{ define "main" }}
+<div class="container pt-5 pb-2">
+    {{ $.Scratch.Set "h1" true }}
+    {{ .Render "content-single" }}
+    {{ .Render "prev-next" }}
+  </div>
+{{ end }}

@@ -1,23 +1,43 @@
+{{ partial "seo_schema" . }}
+{{ with $.Scratch.Get "generalTitle" }}
+    <title>{{ . }}</title>
+{{ else }}
+    {{ with .Title }}
+        <title>{{ . }}</title>
+    {{ else }}
+        <title>{{ .Site.Title }}</title>
+    {{ end }}
+{{ end }}
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-{{- template "_internal/opengraph.html" . -}}
-{{- template "_internal/schema.html" . -}}
-{{- template "_internal/twitter_cards.html" . -}}
-
-{{- with .Site.Params.google_verify_meta -}}
-<meta name="google-site-verification" content="{{ . }}" />
-{{ end }}
-
-{{- with .Description -}}
-<meta name="description" content="{{.}}">
-{{ end }}
+{{ .Hugo.Generator }}
 
 {{- with .Site.Params.author.name -}}
 <meta name="author" content="{{.}}">
 {{ end }}
 
-<title>{{ block "title" . }}{{ .Site.Title }}{{ end }}</title>
+{{ with .Description }}
+<meta name="description" content="{{ . }}">
+{{ else }}
+{{ with .Site.Params.description }}
+<meta name="description" content="{{ . }}">
+{{ end }}
+{{ end }}
+
+{{- template "_internal/twitter_cards.html" . -}}
+{{- template "_internal/opengraph.html" . -}}
+<meta property="og:image" content="{{ .Site.BaseURL }}/images/logo.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+{{- template "_internal/schema.html" . -}}
+{{ template "_internal/google_news.html" . }}
+
+{{- with .Site.Params.google_verify_meta -}}
+<meta name="google-site-verification" content="{{ . }}" />
+{{ end }}
+
 <link rel="canonical" href="{{ .Permalink }}">
 
 <!--     Fonts and icons     -->

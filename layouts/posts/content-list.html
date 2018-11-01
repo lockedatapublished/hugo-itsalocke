@@ -1,0 +1,12 @@
+<article class="post border-bottom mb-5">
+  {{ .Render "header" }}
+  {{ .Render "featured" }}
+  {{ $.Scratch.Set "summary" ((delimit (findRE "<p.*?>(.|\n)*?</p>" .Content 1) "") | truncate (default 500 .Site.Params.summary_length) (default "&hellip;" .Site.Params.text.truncated ) | replaceRE "&amp;" "&" | safeHTML) }}
+  {{ $.Scratch.Get "summary" }}
+  <footer class="d-flex justify-content-between align-items-end mb-4">
+    <ul class="actions list-unstyled">
+      <li><a href="{{ .RelPermalink }}" class="btn btn-outline-orange">Read More</a></li>
+    </ul>
+  {{ .Render "footer-category" }}
+  </footer>
+</article>

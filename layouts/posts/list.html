@@ -1,0 +1,21 @@
+{{ define "main" }}
+<div class="container pt-5 pb-2">
+  <div class="row">
+    <div class="col-md-3">
+      <h1 class="mb-4 SiteTitle">{{ .Title }}</h1>
+      <div class="text-secondary small border-bottom mb-4">
+        {{.Content}}
+      </div>
+      {{ partial "categories" . }}
+    </div>
+    <div class="ml-auto col-md-8">
+        {{ $paginator := .Paginate .Data.Pages }}
+        {{ range .Paginator.Pages }}
+            {{ .Render "content-list" }}
+        {{ end }}
+        {{ partial "pagination" . }}
+    </div>
+  </div>
+</div>
+
+{{ end }}

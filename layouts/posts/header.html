@@ -1,0 +1,28 @@
+<header class="d-flex justify-content-between align-items-baseline">
+  <div class="title mb-3">
+      {{ if $.Scratch.Get "h1" }}
+          <h1 class="m-0"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h1>
+          {{ $.Scratch.Set "h1" false }}
+      {{ else }}
+          <h2 class="m-0"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+      {{ end }}
+         <p class="m-0">by {{ .Params.authors }}</p>
+      {{ with .Description }}
+          <p>{{ . }}</p>
+      {{ end }}
+  </div>
+  <div class="meta text-right">
+      {{ $.Scratch.Set "dateType" .Date }}
+
+      <p class="mb-2 text-nowrap">
+        <i class="far fa-clock mr-1"></i>
+        <time class="published font-weight-bold"
+            datetime='{{ ($.Scratch.Get "dateType").Format "2006-01-02" }}'>
+            {{ ($.Scratch.Get "dateType").Format "January 2, 2006" }}</time>
+      </p>
+      {{ if .Site.Params.includeReadingTime }}
+          <p class="text-nowrap small font-weight-light text-secondary">{{ .ReadingTime }} minute read</p>
+      {{ end }}
+      <!--<a href="#" class="author"><span class="name">Jane Doe</span><img src="images/avatar.jpg" alt="" /></a>-->
+  </div>
+</header>

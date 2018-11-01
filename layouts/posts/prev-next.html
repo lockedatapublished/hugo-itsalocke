@@ -1,0 +1,11 @@
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+  {{ if .PrevInSection }}
+      <li class="page-item"><a class="page-link" href="{{ .PrevInSection.RelPermalink }}">{{ .PrevInSection.Title }}</a></li>
+  {{ end }}
+  
+  {{ if .PrevInSection }}
+      <li class="page-item"><a class="page-link" href="{{ .NextInSection.RelPermalink }}">{{ .NextInSection.Title }}</a></li>
+  {{ end }}
+  </ul>
+</nav>
