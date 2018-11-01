@@ -10,7 +10,7 @@
         {{ partial "categories" . }}
         {{ partial "tags" . }}
       </div>
-      <div class="ml-auto col-md-8 bg-white pt-5 pb-2">
+      <div class="ml-auto col-md-8 bg-white pt-5 pb-5">
           {{ $paginator := .Paginate .Data.Pages }}
           {{ range .Paginator.Pages }}
               {{ .Render "content-list" }}
