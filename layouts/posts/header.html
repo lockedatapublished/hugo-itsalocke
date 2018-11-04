@@ -12,13 +12,8 @@
       {{ end }}
   </div>
   <div class="meta text-right mr-2">
-      {{ $.Scratch.Set "dateType" .Date }}
-
       <p class="mb-2 text-nowrap">
-        <i class="far fa-clock"></i>
-        <time class="published font-weight-bold"
-            datetime='{{ ($.Scratch.Get "dateType").Format "2006-01-02" }}'>
-            {{ ($.Scratch.Get "dateType").Format "Monday, 2 Jan 2006" }}</time>
+        {{ partial "publish-time.html" . }}
       </p>
       {{ if .Site.Params.includeReadingTime }}
           <p class="text-nowrap small font-weight-light text-secondary">{{ .ReadingTime }} minute read</p>

@@ -1,5 +1,1 @@
-<small class="text-muted"><i class="fal fa-clock"></i>
-  <time datetime="{{ dateFormat "2006-01-02T15:04:05-07:00" (default .Date (.PublishDate)) }}">
-    {{ dateFormat "Monday, 2 Jan 2006" (default .Date (.PublishDate)) }}
-  </time>
-</small>
+<i class="far fa-clock"></i> {{ partial "publish-time-element.html" . }}

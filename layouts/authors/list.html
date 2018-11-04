@@ -30,10 +30,10 @@
         <ul class="list-unstyled ml-2">
           <li class="mb-3">{{ .talk_id }} {{ .person_id }} </li>
           {{ with $.Site.GetPage "taxonomyTerm" (printf "authors/%s" .person_id) }}
-          <li class="mb-3"><a class="d-block" href="{{ .Permalink }}">{{ .Title }}</a>{{ partial "publish-time.html" .}}</li>
+          <li class="mb-3"><a class="d-block" href="{{ .Permalink }}">{{ .Title }}</a><small class="text-muted">{{ partial "publish-time.html" .}}</small></li>
           {{ end }}
           <li class="mb-3">{{ with $.Site.GetPage "page" ( printf "talks/%s.md" .talk_id ) }}
-              <a class="d-block" href="{{ .Permalink }}">{{ .Title }}</a>{{ partial "publish-time.html" .}}
+              <a class="d-block" href="{{ .Permalink }}">{{ .Title }}</a><small class="text-muted">{{ partial "publish-time.html" .}}</small>
             {{ end }}</li>
         </ul>
       </div>
@@ -45,7 +45,7 @@
         <h3 class="watermark-container"><i class="fal fa-pen-square mr-2 text-orange watermark"></i> Articles</h3>
         <ul class="list-unstyled ml-2">
           {{ range first 5 .Data.Pages }}
-          <li class="mb-3"><a class="d-block" href="{{ .Permalink }}">{{ .Title }}</a>{{ partial "publish-time.html" .}}</li>
+          <li class="mb-3"><a class="d-block" href="{{ .Permalink }}">{{ .Title }}</a><small class="text-muted">{{ partial "publish-time.html" .}}</small></li>
           {{ end }}
         </ul>
       </div>
