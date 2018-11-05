@@ -1,24 +1,64 @@
-nav[data-toggle='toc'] {
-  top: 84px;
+.toc {
+  order: 2;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  font-size: .875rem
 }
 
-/* small screens */
-@media (max-width: 768px) {
-  /* override stickyness so that the navigation does not follow scrolling */
-  nav[data-toggle='toc'] {
-    margin-bottom: 42px;
-    position: static;
+@supports ((position:-webkit-sticky) or (position:sticky)) {
+  .toc {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 71px;
+    height: calc(100vh - 71px);
+    overflow-y: auto
   }
+}
 
-  /* PICK ONE */
-  /* don't expand nested items, which pushes down the rest of the page when navigating */
-  nav[data-toggle='toc'] .nav .active .nav {
-    display: none;
-  }
-  /* alternatively, if you *do* want the second-level navigation to be shown (as seen on this page on mobile), use this */
-  /*
-  nav[data-toggle='toc'] .nav .nav {
-    display: block;
-  }
-  */
+.toc-title {
+  font-size: .875rem;
+  font-weight: 600;
+  padding-left: calc(1.5rem + 1px);
+  margin-bottom: .5rem;
+}
+
+#TableOfContents {
+  padding-left: 0;
+  border-left: 1px solid #eee;
+}
+
+#TableOfContents ul,
+ul.toc-top {
+  padding-left: 0;
+}
+
+#TableOfContents li {
+  display: block;
+}
+
+#TableOfContents li a,
+.toc-top li a {
+  display: block;
+  padding: .125rem 1.5rem;
+  font-size: 0.7rem;
+}
+
+#TableOfContents li a:hover,
+.toc-top li a:hover {
+  text-decoration: none;
+}
+
+body {
+  position: relative;
+}
+
+:target:before {
+  content:"";
+  display:block;
+  height:74px; /* fixed header height*/
+  margin:-74px 0 0; /* negative fixed header height */
+}
+
+html{
+  scroll-behavior:smooth;
 }

@@ -1,9 +1,33 @@
 {{ define "main" }}
 <div class="bg-light">
+  {{ if and (gt .WordCount 400 ) (ne .Params.toc "false") }}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 pt-5 pb-5 bg-white post-content">
+          {{ $.Scratch.Set "h1" true }}
+          {{ .Render "content-single" }}
+          {{ .Render "prev-next" }}
+      </div>
+  
+      <aside class="ml-auto col-md-3 toc">
+          <p class="toc-title">Contents</p>
+    
+          {{ .TableOfContents }}
+    
+          <ul class="nav toc-top">
+            <li><a href="#">Back to top</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+  {{ else }}
+
   <div class="container pt-5 pb-5 bg-white">
     {{ $.Scratch.Set "h1" true }}
     {{ .Render "content-single" }}
     {{ .Render "prev-next" }}
   </div>
+  {{ end }}
 </div>
 {{ end }}
