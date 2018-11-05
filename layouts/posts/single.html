@@ -3,13 +3,13 @@
   {{ if and (gt .WordCount 400 ) (ne .Params.toc "false") }}
   <div class="container">
     <div class="row">
-      <div class="col-md-9 pt-5 pb-5 bg-white post-content">
+      <div class="col-12 col-md-9 pt-5 pb-5 bg-white post-content">
           {{ $.Scratch.Set "h1" true }}
           {{ .Render "content-single" }}
           {{ .Render "prev-next" }}
       </div>
   
-      <aside class="ml-auto col-md-3 toc">
+      <aside class="d-sm-none d-md-block ml-auto col-md-3 toc  pt-5 pb-5">
           <p class="toc-title">Contents</p>
     
           {{ .TableOfContents }}
