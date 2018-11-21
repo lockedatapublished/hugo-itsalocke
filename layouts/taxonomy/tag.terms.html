@@ -1,0 +1,39 @@
+{{ define "main" }}
+{{ if .Site.Params.categoriesByCount }}
+{{ $.Scratch.Set "tags" .Data.Terms.ByCount }}
+{{ else }}
+{{ $.Scratch.Set "tags" .Data.Terms.Alphabetical }}
+{{ end }}
+<div class="bg-light list-container">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 pt-5 pb-2">
+            <h2 class="SiteTitle mb-4"><i class="fas fa-tags mr-3 text-muted"></i>tags</h2>
+          <div class="text-secondary small border-bottom mb-4">
+            {{.Content}}
+          </div>
+        </div>
+        <div class="ml-auto col-md-8 bg-white pt-5 pb-5">
+          <ul>
+            {{ $data := .Data }}
+            {{ range $key, $value := $.Scratch.Get "tags" }}
+                <li>
+                    <article>
+                        <header>
+                            {{ if ne $value.Name "" }}
+                                <a href="{{"/" | relURL}}{{ $data.Plural }}/{{ $value.Name | urlize }}">{{ $value.Name }}</a>
+                                <span style="float:right;">{{ $value.Count }}</span>
+                            {{ else }}
+                                Uncategorized
+                                <span style="float:right;">{{ $value.Count }}</span>
+                            {{ end }}
+                        </header>
+                    </article>
+                </li>
+            {{ end }}
+        </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+{{ end }}
